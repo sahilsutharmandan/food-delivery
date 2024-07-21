@@ -1,0 +1,30 @@
+@import "./header.scss";
+
+// Home page css
+
+.home-page {
+  .hero-section {
+    .action {
+      .play-btn {
+        border-color: var(--color-pink);
+        @apply border-8 !border-r-transparent !border-b-transparent -rotate-45 rounded-full;
+        span {
+          @apply rotate-45;
+        }
+      }
+    }
+  }
+  .trending-swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        &:not(.swiper-slide-next, .swiper-slide-prev, .swiper-slide-active) {
+          opacity: 0.2;
+        }
+        &.swiper-slide-prev,
+        &.swiper-slide-next {
+          opacity: 0.6;
+        }
+      }
+    }
+  }
+}

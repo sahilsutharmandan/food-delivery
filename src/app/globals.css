@@ -3,19 +3,52 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
+  --background: #EEEDEB;
   --foreground: #171717;
+  --font-merienda: 'Merienda', cursive;
+  --font-poppins: 'Poppins', sans-serif;
+  --color-light: #EEEDEB;
+  --color-dark: #2F3645;
+  --color-light-pink: #E6B9A6;
+  --color-pink: #F35E32;
+  --color-gray: #939185
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
+  color: var(--color-dark);
   background: var(--background);
   font-synthesis: none;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-merienda)
+}
+
+.text-dark {
+  color: var(--color-dark)
+}
+
+.text-pink {
+  color: var(--color-pink)
+}
+
+.bg-dark {
+  background-color: var(--color-dark);
+}
+
+.bg-pink {
+  background-color: var(--color-pink);
+}
+
+.font-merienda {
+  font-family: var(--font-merienda);
 }
