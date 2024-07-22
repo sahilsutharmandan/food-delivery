@@ -27,4 +27,22 @@
       }
     }
   }
+  .collection-swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        &:not(.swiper-slide-next, .swiper-slide-prev, .swiper-slide-active) {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
+  .new-recipe-swiper {
+    .swiper-wrapper {
+      .swiper-slide {
+        &:not(.swiper-slide-next, .swiper-slide-prev, .swiper-slide-active) {
+          opacity: 0.2;
+        }
+      }
+    }
+  }
 }
