@@ -6,15 +6,15 @@ import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { useTrendingStore } from "@/store/trendingStore";
 import RecipeCard from "@/components/recipe/RecipeCard";
 
-export default function PopularPage() {
+export default function TrendingPage() {
   const { trending, getTrending } = useTrendingStore();
 
   useEffect(() => {
     getTrending();
   }, [getTrending]);
 
-  // Popular recipes section from data (indexes 24-40)
-  const popularRecipes = trending?.length > 0 ? trending.slice(24, 40) : [];
+  // Trending section recipes from data (indexes 0-16)
+  const trendingRecipes = trending?.length > 0 ? trending.slice(0, 16) : [];
 
   return (
     <div className="container px-4 py-8 mx-auto space-y-8 sm:px-6 lg:px-8">
@@ -29,32 +29,32 @@ export default function PopularPage() {
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <div>
             <h1 className="text-4xl font-bold text-dark sm:text-5xl">
-              Popular <strong className="text-pink">Recipes</strong>
+              Trending <strong className="text-pink">Recipes</strong>
             </h1>
             <p className="mt-2 text-base opacity-75">
-              Our most loved and frequently ordered dishes, curated for you.
+              The hottest dishes and trending flavors being ordered right now.
             </p>
           </div>
           <span className="self-start px-3 py-1 text-sm font-semibold rounded-full bg-pink/10 text-pink md:self-auto">
-            {popularRecipes.length} dishes available
+            {trendingRecipes.length} dishes available
           </span>
         </div>
       </div>
 
       {/* Recipes Grid */}
-      {popularRecipes.length > 0 ? (
+      {trendingRecipes.length > 0 ? (
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-          {popularRecipes.map(({ recipe }) => (
+          {trendingRecipes.map(({ recipe }) => (
             <RecipeCard
               key={recipe?.uri || recipe?.label}
               recipe={recipe}
-              badge="Popular"
+              badge="Trending"
             />
           ))}
         </div>
       ) : (
         <div className="flex items-center justify-center py-20 text-stone-500">
-          <p>Loading popular recipes...</p>
+          <p>Loading trending recipes...</p>
         </div>
       )}
     </div>

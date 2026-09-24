@@ -1,5 +1,7 @@
 header {
   @apply shadow-sm;
+  max-width: 100vw;
+  box-sizing: border-box;
   .nav-menu {
     @apply flex items-center gap-6;
     li {
