@@ -49,9 +49,9 @@ export default function Home() {
         </div>
       </section>
       <section className="container px-4 py-5 mx-auto bg-gradient-to-l from-white/10 via-white/60 to-white/10">
-        <div className="flex items-center justify-between py-6 mx-8">
+        <div className="flex items-center justify-between py-6 mx-8 section-heading">
           <h2 className="text-3xl font-semibold">Trending Recipes</h2>
-          <Link className="flex items-center font-semibold text-pink" href="/">
+          <Link className="flex items-center font-semibold text-pink" href="/recipe?section=trending">
             View All <KeyboardArrowRightIcon />
           </Link>
         </div>
@@ -103,9 +103,9 @@ export default function Home() {
         </div>
       </section>
       <section className="container px-4 mx-auto">
-        <div className="flex items-center justify-between py-6 mx-8">
+        <div className="flex items-center justify-between py-6 mx-8 section-heading">
           <h2 className="text-3xl font-semibold">Newest Recipes</h2>
-          <Link className="flex items-center font-semibold text-pink" href="/">
+          <Link className="flex items-center font-semibold text-pink" href="/recipe?section=newest">
             View All <KeyboardArrowRightIcon />
           </Link>
         </div>
@@ -130,9 +130,9 @@ export default function Home() {
         </div>
       </section>
       <section className="container px-4 mx-auto bg-gradient-to-l from-white/10 via-[#FCF8F3] to-white/10">
-        <div className="flex items-center justify-between pt-10 pb-5 mx-8">
+        <div className="flex items-center justify-between pt-10 pb-5 mx-8 section-heading">
           <h2 className="text-3xl font-semibold">Popular Recipes</h2>
-          <Link className="flex items-center font-semibold text-pink" href="/">
+          <Link className="flex items-center font-semibold text-pink" href="/popular">
             View All <KeyboardArrowRightIcon />
           </Link>
         </div>

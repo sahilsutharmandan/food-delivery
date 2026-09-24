@@ -16,3 +16,21 @@ header {
     }
   }
 }
+
+header {
+  .header-content { display: flex; align-items: center; justify-content: space-between; }
+  .header-menu { display: contents; }
+  .brand { flex-shrink: 0; }
+  .menu-toggle { display: none; }
+  button:focus-visible, a:focus-visible, input:focus-visible { outline: 2px solid var(--color-pink); outline-offset: 4px; }
+
+  @media (max-width: 1023px) {
+    .header-content { flex-wrap: wrap; padding-inline: 16px; gap: 16px; }
+    .brand { width: auto; }
+    .menu-toggle { display: block; padding: 8px; border: 1px solid currentColor; border-radius: 8px; }
+    .header-menu { display: none; width: 100%; min-width: 0; }
+    .header-menu.is-open { display: flex; flex-direction: column; gap: 20px; padding-block: 8px; }
+    .nav-menu { flex-wrap: wrap; }
+    .header-search { width: 100%; }
+  }
+}
