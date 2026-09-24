@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import RecipeImage from "@/components/RecipeImage";
 import BannerImage from "@/images/banner-bg-img.png";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import Link from "next/link";
@@ -165,7 +166,7 @@ export function TrendingSlide({ data }) {
     <div style={{ width: "290px" }} className="py-6 swiper-slide">
       <div className="relative p-5 bg-white shadow rounded-ss-3xl rounded-ee-3xl">
         <div className="absolute overflow-hidden rounded-full size-24 -right-6 -top-6">
-          <img
+          <RecipeImage
             className="absolute object-cover w-full h-full"
             src={data?.image}
             alt={data?.label}
@@ -199,7 +200,7 @@ export function CollectionCard({ recipe }) {
       className="swiper-slide odd:bg-[#FFEFEF] even:bg-[#F6F5F2] overflow-hidden rounded-tr-[2.5rem] rounded-bl-3xl shadow my-4"
     >
       <div className="relative w-full h-52 rounded-bl-[2.5rem] overflow-hidden">
-        <img
+        <RecipeImage
           src={recipe?.image}
           alt={recipe?.label}
           className="absolute object-cover w-full h-full"
@@ -214,7 +215,7 @@ export function NewestRecipe({ data }) {
     <div style={{ width: "290px" }} className="pt-20 pb-6 swiper-slide">
       <div className="relative p-5 bg-white shadow rounded-3xl">
         <div className="relative mx-auto -mt-[5.5rem] overflow-hidden rounded-full size-32">
-          <img
+          <RecipeImage
             className="absolute object-cover w-full h-full"
             src={data?.image}
             alt={data?.label}
@@ -257,7 +258,7 @@ export function PopularRecipe({ data }) {
       <div className="relative">
         <div className="relative z-10 p-5 shadow bg-white/30 backdrop-blur rounded-3xl">
           <div className="relative mx-auto -mt-[5.5rem] overflow-hidden rounded-full size-32">
-            <img
+            <RecipeImage
               className="absolute object-cover w-full h-full"
               src={data?.image}
               alt={data?.label}
@@ -290,7 +291,7 @@ export function PopularRecipe({ data }) {
             </div>
           </div>
         </div>
-        <img
+        <RecipeImage
           className="absolute top-0 left-0 z-0 object-cover w-full h-full rounded-3xl"
           src={data?.image}
           alt={data?.label}
