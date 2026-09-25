@@ -12,6 +12,7 @@ import StarOutlineIcon from "@mui/icons-material/StarOutline";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import AddShoppingCartIcon from "@mui/icons-material/AddShoppingCart";
 import { useTrendingStore } from "@/store/trendingStore";
+import { getRecipeId } from "@/lib/recipes";
 import { useEffect } from "react";
 export default function Home() {
   const { trending, getTrending } = useTrendingStore();
@@ -173,7 +174,9 @@ export function TrendingSlide({ data }) {
           />
         </div>
         <span className="font-semibold price text-pink">$11.22</span>
-        <p className="mt-6 font-semibold title line-clamp-1">{data?.label}</p>
+        <Link href={`/recipe/${getRecipeId(data)}`} className="hover:text-pink transition-colors">
+          <p className="mt-6 font-semibold title line-clamp-1">{data?.label}</p>
+        </Link>
         <p className="text-sm opacity-60">{data?.mealType[0]}</p>
         <div className="flex items-center gap-1 mb-6 text-sm opacity-70">
           4.6{" "}
@@ -195,19 +198,20 @@ export function TrendingSlide({ data }) {
 
 export function CollectionCard({ recipe }) {
   return (
-    <div
+    <Link
+      href={`/recipe/${getRecipeId(recipe)}`}
       style={{ width: "310px" }}
-      className="swiper-slide odd:bg-[#FFEFEF] even:bg-[#F6F5F2] overflow-hidden rounded-tr-[2.5rem] rounded-bl-3xl shadow my-4"
+      className="swiper-slide block odd:bg-[#FFEFEF] even:bg-[#F6F5F2] overflow-hidden rounded-tr-[2.5rem] rounded-bl-3xl shadow my-4 group"
     >
       <div className="relative w-full h-52 rounded-bl-[2.5rem] overflow-hidden">
         <RecipeImage
           src={recipe?.image}
           alt={recipe?.label}
-          className="absolute object-cover w-full h-full"
+          className="absolute object-cover w-full h-full group-hover:scale-105 transition-transform duration-300"
         />
       </div>
-      <p className="px-5 my-6 font-semibold line-clamp-1">{recipe?.label}</p>
-    </div>
+      <p className="px-5 my-6 font-semibold line-clamp-1 group-hover:text-pink transition-colors">{recipe?.label}</p>
+    </Link>
   );
 }
 export function NewestRecipe({ data }) {
@@ -221,9 +225,11 @@ export function NewestRecipe({ data }) {
             alt={data?.label}
           />
         </div>
-        <p className="h-12 mt-6 font-semibold text-center title line-clamp-2">
-          {data?.label}
-        </p>
+        <Link href={`/recipe/${getRecipeId(data)}`} className="hover:text-pink transition-colors">
+          <p className="h-12 mt-6 font-semibold text-center title line-clamp-2">
+            {data?.label}
+          </p>
+        </Link>
         <div className="flex items-center justify-between pt-4 mt-4 border-t">
           <div className="">
             <p className="text-sm opacity-60">{data?.mealType[0]}</p>
@@ -264,9 +270,11 @@ export function PopularRecipe({ data }) {
               alt={data?.label}
             />
           </div>
-          <p className="h-12 mt-6 font-semibold text-center title line-clamp-2">
-            {data?.label}
-          </p>
+          <Link href={`/recipe/${getRecipeId(data)}`} className="hover:text-pink transition-colors">
+            <p className="h-12 mt-6 font-semibold text-center title line-clamp-2">
+              {data?.label}
+            </p>
+          </Link>
           <div className="flex items-center justify-between pt-4 mt-4 border-t border-[var(--color-gray)]">
             <div className="">
               <p className="text-sm opacity-80">{data?.mealType[0]}</p>
