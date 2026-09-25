@@ -1,7 +1,6 @@
-import React from "react";
+import RecipeListing from "@/components/recipes/recipeListing";
+import { sections } from "@/lib/recipes";
 
-function Page() {
-  return <div>Popular</div>;
+export default function Page() {
+  return <RecipeListing {...sections.popular} />;
 }
-
-export default Page;

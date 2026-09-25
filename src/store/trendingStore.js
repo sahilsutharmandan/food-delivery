@@ -4,7 +4,7 @@ export const useTrendingStore = create((set) => ({
   trending: [],
   getTrending: async () => {
     try {
-      const response = await fetch("http://localhost:3000/foods.json");
+      const response = await fetch("/foods.json");
       const data = await response.json();
       set({ trending: data?.hits });
     } catch (error) {
