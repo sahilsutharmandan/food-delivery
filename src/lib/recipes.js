@@ -11,7 +11,15 @@ export const sections = {
 export function searchRecipes(query) {
   const terms = query.toLocaleLowerCase().split(/\s+/).filter(Boolean);
   return recipes.filter((recipe) => {
-    const text = [recipe.label, ...recipe.ingredientLines, ...recipe.cuisineType, ...recipe.mealType, ...recipe.dishType].join(" ").toLocaleLowerCase();
+    const text = recipe.label.toLocaleLowerCase();
     return terms.every((term) => text.includes(term));
   });
+}
+
+export function recipeId(recipe) {
+  return recipe.uri.split("#recipe_")[1];
+}
+
+export function recipeHref(recipe) {
+  return `/recipe/${recipeId(recipe)}`;
 }

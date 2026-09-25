@@ -41,8 +41,8 @@ export function NavMenus({ onNavigate }) {
     <nav aria-label="Main navigation">
       <ul className="nav-menu">
         {[{ label: "Home", src: "/" }, { label: "Recipe", src: "/recipe" }, { label: "Popular", src: "/popular" }].map((nav) => (
-          <li className={pathname === nav.src ? "text-pink active" : "text-dark opacity-80"} key={nav.label}>
-            <Link href={nav.src} aria-current={pathname === nav.src ? "page" : undefined} onClick={onNavigate}>{nav.label}</Link>
+          <li className={(pathname === nav.src || (nav.src === "/recipe" && pathname.startsWith("/recipe/"))) ? "text-pink active" : "text-dark opacity-80"} key={nav.label}>
+            <Link href={nav.src} aria-current={(pathname === nav.src || (nav.src === "/recipe" && pathname.startsWith("/recipe/"))) ? "page" : undefined} onClick={onNavigate}>{nav.label}</Link>
           </li>
         ))}
       </ul>
