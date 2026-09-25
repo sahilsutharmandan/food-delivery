@@ -1,16 +1,43 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import RecipeImage from "@/components/RecipeImage";
-import { recipes, recipeId } from "@/lib/recipes";
+import { recipes, recipeId, recipeHref } from "@/lib/recipes";
+
+import JsonLd from "@/components/JsonLd";
+import { pageMetadata, recipeSummary, recipeStructuredData, breadcrumbStructuredData, hasRecipePhoto, defaultSocialImage } from "@/lib/seo.mjs";
+
+function findRecipe(id) {
+  const recipe = recipes.find((item) => recipeId(item) === id);
+  if (!recipe) notFound();
+  return recipe;
+}
+
+export async function generateMetadata({ params }) {
+  const recipe = findRecipe((await params).id);
+  return pageMetadata({
+    title: recipe.label,
+    description: recipeSummary(recipe),
+    path: recipeHref(recipe),
+    image: hasRecipePhoto(recipe) ? recipe.image : defaultSocialImage,
+    imageAlt: hasRecipePhoto(recipe) ? recipe.label : "Food. recipe collection",
+  });
+}
 
 export default async function RecipePage({ params }) {
   const { id } = await params;
-  const recipe = recipes.find((item) => recipeId(item) === id);
-  if (!recipe) notFound();
+  const recipe = findRecipe(id);
   const servings = recipe.yield;
   return (
     <article className="container mx-auto px-4 py-8 max-w-6xl">
-      <Link href="/recipe" className="inline-block mb-6 text-pink font-semibold">← All recipes</Link>
+      <JsonLd data={recipeStructuredData(recipe, recipeHref(recipe))} />
+      <JsonLd data={breadcrumbStructuredData([{ name: "Home", path: "/" }, { name: "All recipes", path: "/recipe" }, { name: recipe.label, path: recipeHref(recipe) }])} />
+      <nav aria-label="Breadcrumb" className="mb-6 text-sm">
+        <ol className="flex flex-wrap gap-x-2 gap-y-1">
+          <li><Link href="/" className="text-pink underline">Home</Link><span aria-hidden="true" className="ml-2">/</span></li>
+          <li><Link href="/recipe" className="text-pink underline">All recipes</Link><span aria-hidden="true" className="ml-2">/</span></li>
+          <li aria-current="page">{recipe.label}</li>
+        </ol>
+      </nav>
       <div className="bg-white rounded-3xl overflow-hidden shadow-sm grid md:grid-cols-2">
         <div className="relative">
           <RecipeImage src={recipe.image} alt={recipe.label} className="w-full h-full min-h-64 max-h-[520px] object-cover" />
@@ -19,7 +46,7 @@ export default async function RecipePage({ params }) {
         <div className="p-6 md:p-10 flex flex-col justify-center">
           <p className="text-pink uppercase tracking-widest text-xs font-semibold mb-4">{recipe.cuisineType.join(" · ")} · {recipe.mealType.join(" · ")}</p>
           <h1 className="text-3xl md:text-4xl leading-snug font-bold">{recipe.label}</h1>
-          <p className="mt-4 opacity-80">Recipe from {recipe.source}</p>
+          <p className="mt-4 opacity-80 leading-relaxed">{recipeSummary(recipe)}</p>
           <dl className="grid grid-cols-3 gap-3 border-y my-6 py-5">
             <div><dt className="text-xs opacity-70">Servings</dt><dd className="text-xl font-semibold mt-1">{servings || "—"}</dd></div>
             <div><dt className="text-xs opacity-70">Ingredients</dt><dd className="text-xl font-semibold mt-1">{recipe.ingredientLines.length}</dd></div>

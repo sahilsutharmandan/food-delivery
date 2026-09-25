@@ -2,10 +2,11 @@ import Link from "next/link";
 import RecipeImage from "@/components/RecipeImage";
 import { recipeHref } from "@/lib/recipes";
 
-export default function RecipeListing({ title, recipes, query }) {
+export default function RecipeListing({ title, recipes, query, description }) {
   return (
     <section className="container mx-auto px-4 py-10">
       <h1 className="text-3xl font-semibold">{title}</h1>
+      {!query && description && <p className="mt-3 max-w-3xl text-sm leading-relaxed opacity-80">{description}</p>}
       {query && <p className="mt-3 break-words">Results for “{query}”</p>}
       {query && <p className="mt-2 text-sm opacity-80">Matching recipe names</p>}
       <p className="mt-3 opacity-80">{recipes.length} {recipes.length === 1 ? "recipe" : "recipes"}</p>
