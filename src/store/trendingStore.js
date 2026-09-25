@@ -5,6 +5,9 @@ export const useTrendingStore = create((set) => ({
   getTrending: async () => {
     try {
       const response = await fetch("/foods.json");
+      if (!response.ok) {
+        throw new Error(`Failed to fetch recipes: ${response.status}`);
+      }
       const data = await response.json();
       set({ trending: data?.hits });
     } catch (error) {
